@@ -60,16 +60,37 @@
                 </p>
             </div>
 
-            <div class="filter-container">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="Limestone">Limestone</button>
-                <button class="filter-btn" data-filter="Marble">Marble</button>
-                <button class="filter-btn" data-filter="Granite">Granite</button>
-                <button class="filter-btn" data-filter="Sandstone">Sandstone</button>
-            </div>
+            <div class="collection-layout">
+                <!-- Left Sidebar with Filters -->
+                <aside class="filter-sidebar">
+                    <!-- Search Bar -->
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Search stones..." />
+                        <svg class="search-icon" width="20" height="20" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
 
-            <div class="product-grid" id="productGrid">
-                <!-- Products will be injected here by JS -->
+                    <!-- Filters will be dynamically generated here -->
+                    <div id="filterSidebar" class="filters-container">
+                        <!-- Filters injected via JS -->
+                    </div>
+
+                    <!-- Clear Filters Button -->
+                    <button id="clearFilters" class="btn-clear-filters">Clear All Filters</button>
+                </aside>
+
+                <!-- Right Side: Product Grid -->
+                <div class="products-main">
+                    <div class="products-header">
+                        <p id="resultsCount" class="results-count">Showing all products</p>
+                    </div>
+                    <div class="product-grid" id="productGrid">
+                        <!-- Products will be injected here by JS -->
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -214,6 +235,7 @@
         </div>
     </div>
 
+    <script src="data/products.js"></script>
     <script src="script.js"></script>
 </body>
 

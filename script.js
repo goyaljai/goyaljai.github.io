@@ -1,155 +1,40 @@
-const products = [
-    {
-        id: 1,
-        name: "Royal Beige Limestone",
-        type: "Limestone",
-        images: [
-            "https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=1000&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1599696847727-94485e978530?q=80&w=1000&auto=format&fit=crop"
-        ],
-        description: "A classic beige limestone with subtle fossil detailing. Perfect for creating warm, inviting interiors. Its natural non-slip surface makes it ideal for both living areas and bathrooms.",
-        specs: ["Origin: Rajasthan", "Finish: Honed", "Thickness: 20mm", "Usage: Indoor/Outdoor"],
-        price: 180,
-        stock: 450,
-        rating: 4.8
-    },
-    {
-        id: 2,
-        name: "Carrara White Marble",
-        type: "Marble",
-        images: [
-            "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=1000&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=1000&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?q=80&w=1000&auto=format&fit=crop"
-        ],
-        description: "The epitome of luxury. Our Carrara White Marble features soft grey veining against a pristine white background. Each slab is a unique masterpiece of nature.",
-        specs: ["Origin: Italy", "Finish: Polished", "Thickness: 18mm", "Usage: Indoor Only"],
-        price: 450,
-        stock: 1200,
-        rating: 4.9
-    },
-    {
-        id: 3,
-        name: "Kota Blue",
-        type: "Limestone",
-        images: [
-            "https://images.unsplash.com/photo-1621260857642-2777f6539552?q=80&w=1000&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1519974719765-e6559e632b7b?q=80&w=1000&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1584622050111-993a426fbf0a?q=80&w=1000&auto=format&fit=crop"
-        ],
-        description: "A durable, cool-toned limestone known for its hardness and longevity. The blue-green hues add a touch of serenity to any space. Extremely popular for high-traffic areas.",
-        specs: ["Origin: Kota, India", "Finish: Natural/Polished", "Thickness: 25mm", "Usage: Heavy Traffic"],
-        price: 65,
-        stock: 5000,
-        rating: 4.5
-    },
-    {
-        id: 4,
-        name: "Black Galaxy Granite",
-        type: "Granite",
-        images: [
-            "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1000&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1622372738946-a287d1434173?q=80&w=1000&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?q=80&w=1000&auto=format&fit=crop"
-        ],
-        description: "Star-like gold and silver flecks shine against a deep black background. This granite is incredibly dense and resistant to scratches, making it perfect for modern homes.",
-        specs: ["Origin: Andhra Pradesh", "Finish: High Gloss", "Thickness: 18mm", "Usage: Countertops/Flooring"],
-        price: 220,
-        stock: 300,
-        rating: 4.7
-    },
-    {
-        id: 5,
-        name: "Teakwood Sandstone",
-        type: "Sandstone",
-        images: [
-            "https://images.unsplash.com/photo-1604147495798-57beb5d6af73?q=80&w=1000&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1597211661940-ddf36269df71?q=80&w=1000&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?q=80&w=1000&auto=format&fit=crop"
-        ],
-        description: "Resembling the texture of wood, this sandstone brings an organic, rustic charm. It features beautiful banding in shades of yellow and brown.",
-        specs: ["Origin: India", "Finish: Sawn", "Thickness: 22mm", "Usage: Wall Cladding/Flooring"],
-        price: 110,
-        stock: 850,
-        rating: 4.6
-    },
-    {
-        id: 6,
-        name: "Travertine Silver",
-        type: "Travertine",
-        images: [
-            "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=1000&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1595428774223-ef52624120d2?q=80&w=1000&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1594568284297-7c64464062b1?q=80&w=1000&auto=format&fit=crop"
-        ],
-        description: "A sophisticated silver-grey travertine with linear veining. Its porous nature gives it a unique texture, often filled for a smoother finish or left unfilled for a rustic look.",
-        specs: ["Origin: Turkey", "Finish: Tumbled", "Thickness: 15mm", "Usage: Bathroom/Patio"],
-        price: 320,
-        stock: 150,
-        rating: 4.8
-    },
-    {
-        id: 7,
-        name: "Mint White Sandstone",
-        type: "Sandstone",
-        images: [
-            "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=1000&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1595428774223-ef52624120d2?q=80&w=1000&auto=format&fit=crop"
-        ],
-        description: "A creamy white sandstone with minty green undertones. Perfect for pool decks and outdoor paving due to its non-slip properties.",
-        specs: ["Origin: Gwalior", "Finish: Natural Split", "Thickness: 22mm", "Usage: Outdoor/Pool"],
-        price: 95,
-        stock: 600,
-        rating: 4.4
-    },
-    {
-        id: 8,
-        name: "Steel Grey Granite",
-        type: "Granite",
-        images: [
-            "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1000&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1622372738946-a287d1434173?q=80&w=1000&auto=format&fit=crop"
-        ],
-        description: "A consistent grey granite with small lighter grey flecks. A versatile choice for both commercial and residential projects.",
-        specs: ["Origin: India", "Finish: Polished/Leather", "Thickness: 18mm", "Usage: Countertops/Flooring"],
-        price: 160,
-        stock: 800,
-        rating: 4.6
-    },
-    {
-        id: 9,
-        name: "Rainforest Green Marble",
-        type: "Marble",
-        images: [
-            "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=1000&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=1000&auto=format&fit=crop"
-        ],
-        description: "An exotic marble with a web of dark brown veins over a green background, resembling a forest map. A true statement piece.",
-        specs: ["Origin: Rajasthan", "Finish: Polished", "Thickness: 18mm", "Usage: Wall Cladding/Tabletops"],
-        price: 280,
-        stock: 150,
-        rating: 4.9
-    },
-    {
-        id: 10,
-        name: "Jaisalmer Yellow",
-        type: "Limestone",
-        images: [
-            "https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=1000&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop"
-        ],
-        description: "Also known as Yellow Gold, this limestone brings the warmth of the desert sun to your floors. Very popular in heritage hotels.",
-        specs: ["Origin: Jaisalmer", "Finish: Honed/Polished", "Thickness: 20mm", "Usage: Flooring/Cladding"],
-        price: 140,
-        stock: 300,
-        rating: 4.7
-    }
-];
-
+// Products and filters will be loaded from products.js
+let products = [];
+let filters = [];
 let cart = [];
+let activeFilters = {
+    search: '',
+    type: [],
+    price: [],
+    stock: []
+};
 
-document.addEventListener('DOMContentLoaded', () => {
+// Load products and filters from global productsData
+function loadData() {
+    try {
+        // productsData is loaded from data/products.js
+        if (typeof productsData === 'undefined') {
+            throw new Error('Products data not loaded');
+        }
+        products = productsData.products;
+        filters = productsData.filters;
+        return true;
+    } catch (error) {
+        console.error('Error loading data:', error);
+        alert('Failed to load data. Please refresh the page.');
+        return false;
+    }
+}
+
+// Initialize app after data is loaded
+function initializeApp() {
+    console.log('initializeApp called');
+    const loaded = loadData();
+    console.log('Data loaded:', loaded, 'Products:', products.length, 'Filters:', filters.length);
+    if (!loaded) return;
+
+    // Now that data is loaded, initialize the UI
+    console.log('Initializing UI...');
     const productGrid = document.getElementById('productGrid');
     const modal = document.getElementById('productModal');
     const closeModalBtn = document.querySelector('.close-modal');
@@ -158,6 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const checkoutModal = document.getElementById('checkoutModal');
     const closeCheckoutBtn = document.querySelector('.close-checkout');
     const checkoutForm = document.getElementById('checkoutForm');
+    const searchInput = document.getElementById('searchInput');
+    const filterSidebar = document.getElementById('filterSidebar');
+    const clearFiltersBtn = document.getElementById('clearFilters');
+    const resultsCount = document.getElementById('resultsCount');
 
     // Modal Elements
     const modalGallery = document.getElementById('modalGallery');
@@ -180,20 +69,147 @@ document.addEventListener('DOMContentLoaded', () => {
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
 
-    // Filter Elements
-    const filterBtns = document.querySelectorAll('.filter-btn');
-
     let currentProduct = null;
 
+    // Render Filter Sidebar
+    function renderFilters() {
+        filterSidebar.innerHTML = '';
+
+        filters.forEach(filter => {
+            const filterGroup = document.createElement('div');
+            filterGroup.className = 'filter-group';
+
+            const title = document.createElement('h4');
+            title.className = 'filter-group-title';
+            title.textContent = filter.name;
+            filterGroup.appendChild(title);
+
+            filter.options.forEach(option => {
+                const filterOption = document.createElement('div');
+                filterOption.className = 'filter-option';
+
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.id = `filter-${filter.id}-${option.value}`;
+                checkbox.value = option.value;
+                checkbox.dataset.filterId = filter.id;
+
+                const label = document.createElement('label');
+                label.htmlFor = checkbox.id;
+                label.textContent = option.label;
+
+                filterOption.appendChild(checkbox);
+                filterOption.appendChild(label);
+                filterGroup.appendChild(filterOption);
+
+                // Add event listener
+                checkbox.addEventListener('change', handleFilterChange);
+            });
+
+            filterSidebar.appendChild(filterGroup);
+        });
+    }
+
+    // Handle Filter Change
+    function handleFilterChange(e) {
+        const filterId = e.target.dataset.filterId;
+        const value = e.target.value;
+
+        if (e.target.checked) {
+            if (!activeFilters[filterId].includes(value)) {
+                activeFilters[filterId].push(value);
+            }
+        } else {
+            activeFilters[filterId] = activeFilters[filterId].filter(v => v !== value);
+        }
+
+        applyFilters();
+    }
+
+    // Search Input Handler
+    searchInput.addEventListener('input', (e) => {
+        activeFilters.search = e.target.value.toLowerCase();
+        applyFilters();
+    });
+
+    // Clear Filters
+    clearFiltersBtn.addEventListener('click', () => {
+        activeFilters = {
+            search: '',
+            type: [],
+            price: [],
+            stock: []
+        };
+        searchInput.value = '';
+        document.querySelectorAll('.filter-option input[type="checkbox"]').forEach(cb => {
+            cb.checked = false;
+        });
+        applyFilters();
+    });
+
+    // Apply Filters
+    function applyFilters() {
+        let filtered = products;
+
+        // Search filter
+        if (activeFilters.search) {
+            filtered = filtered.filter(p =>
+                p.name.toLowerCase().includes(activeFilters.search) ||
+                p.type.toLowerCase().includes(activeFilters.search) ||
+                p.description.toLowerCase().includes(activeFilters.search)
+            );
+        }
+
+        // Type filter
+        if (activeFilters.type.length > 0) {
+            filtered = filtered.filter(p => activeFilters.type.includes(p.type));
+        }
+
+        // Price filter
+        if (activeFilters.price.length > 0) {
+            filtered = filtered.filter(p => {
+                return activeFilters.price.some(range => {
+                    const [min, max] = range.split('-').map(Number);
+                    if (max) {
+                        return p.price >= min && p.price < max;
+                    } else {
+                        return p.price >= min;
+                    }
+                });
+            });
+        }
+
+        // Stock filter
+        if (activeFilters.stock.length > 0) {
+            filtered = filtered.filter(p => {
+                if (activeFilters.stock.includes('low-stock')) {
+                    return p.stock < 500;
+                }
+                if (activeFilters.stock.includes('in-stock')) {
+                    return p.stock >= 500;
+                }
+                return true;
+            });
+        }
+
+        renderProducts(filtered);
+        updateResultsCount(filtered.length);
+    }
+
+    // Update Results Count
+    function updateResultsCount(count) {
+        if (count === products.length) {
+            resultsCount.textContent = `Showing all ${count} products`;
+        } else {
+            resultsCount.textContent = `Showing ${count} of ${products.length} products`;
+        }
+    }
+
     // Render Products Function
-    function renderProducts(filter = 'all') {
+    function renderProducts(productsToRender = products) {
         productGrid.innerHTML = '';
 
-        const filteredProducts = filter === 'all'
-            ? products
-            : products.filter(p => p.type === filter);
-
-        filteredProducts.forEach(product => {
+        productsToRender.forEach(product => {
             const card = document.createElement('div');
             card.className = 'product-card';
 
@@ -232,17 +248,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Initial Render
+    console.log('Rendering filters and products...');
+    renderFilters();
     renderProducts();
-
-    // Filter Event Listeners
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const filterValue = btn.getAttribute('data-filter');
-            renderProducts(filterValue);
-        });
-    });
+    updateResultsCount(products.length);
 
     // Open Product Modal
     function openModal(product) {
@@ -429,4 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
     nextBtn.addEventListener('click', () => {
         modalGallery.scrollBy({ left: 300, behavior: 'smooth' });
     });
-});
+}
+
+// Start the app when DOM is ready
+document.addEventListener('DOMContentLoaded', initializeApp);

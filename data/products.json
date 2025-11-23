@@ -1,0 +1,264 @@
+{
+  "filters": [
+    {
+      "id": "type",
+      "name": "Stone Type",
+      "options": [
+        {
+          "value": "Limestone",
+          "label": "Limestone"
+        },
+        {
+          "value": "Marble",
+          "label": "Marble"
+        },
+        {
+          "value": "Granite",
+          "label": "Granite"
+        },
+        {
+          "value": "Sandstone",
+          "label": "Sandstone"
+        },
+        {
+          "value": "Travertine",
+          "label": "Travertine"
+        }
+      ]
+    },
+    {
+      "id": "price",
+      "name": "Price Range (₹/sq.ft)",
+      "options": [
+        {
+          "value": "0-100",
+          "label": "Under ₹100"
+        },
+        {
+          "value": "100-200",
+          "label": "₹100 - ₹200"
+        },
+        {
+          "value": "200-300",
+          "label": "₹200 - ₹300"
+        },
+        {
+          "value": "300-500",
+          "label": "Above ₹300"
+        }
+      ]
+    },
+    {
+      "id": "stock",
+      "name": "Availability",
+      "options": [
+        {
+          "value": "in-stock",
+          "label": "In Stock"
+        },
+        {
+          "value": "low-stock",
+          "label": "Low Stock"
+        }
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Royal Beige Limestone",
+      "type": "Limestone",
+      "images": [
+        "https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=1000&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1599696847727-94485e978530?q=80&w=1000&auto=format&fit=crop"
+      ],
+      "description": "A classic beige limestone with subtle fossil detailing. Perfect for creating warm, inviting interiors. Its natural non-slip surface makes it ideal for both living areas and bathrooms.",
+      "specs": [
+        "Origin: Rajasthan",
+        "Finish: Honed",
+        "Thickness: 20mm",
+        "Usage: Indoor/Outdoor"
+      ],
+      "price": 180,
+      "stock": 450,
+      "rating": 4.8
+    },
+    {
+      "id": 2,
+      "name": "Carrara White Marble",
+      "type": "Marble",
+      "images": [
+        "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=1000&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=1000&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?q=80&w=1000&auto=format&fit=crop"
+      ],
+      "description": "The epitome of luxury. Our Carrara White Marble features soft grey veining against a pristine white background. Each slab is a unique masterpiece of nature.",
+      "specs": [
+        "Origin: Italy",
+        "Finish: Polished",
+        "Thickness: 18mm",
+        "Usage: Indoor Only"
+      ],
+      "price": 450,
+      "stock": 1200,
+      "rating": 4.9
+    },
+    {
+      "id": 3,
+      "name": "Kota Blue",
+      "type": "Limestone",
+      "images": [
+        "https://images.unsplash.com/photo-1621260857642-2777f6539552?q=80&w=1000&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1519974719765-e6559e632b7b?q=80&w=1000&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1584622050111-993a426fbf0a?q=80&w=1000&auto=format&fit=crop"
+      ],
+      "description": "A durable, cool-toned limestone known for its hardness and longevity. The blue-green hues add a touch of serenity to any space. Extremely popular for high-traffic areas.",
+      "specs": [
+        "Origin: Kota, India",
+        "Finish: Natural/Polished",
+        "Thickness: 25mm",
+        "Usage: Heavy Traffic"
+      ],
+      "price": 65,
+      "stock": 5000,
+      "rating": 4.5
+    },
+    {
+      "id": 4,
+      "name": "Black Galaxy Granite",
+      "type": "Granite",
+      "images": [
+        "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1000&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1622372738946-a287d1434173?q=80&w=1000&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?q=80&w=1000&auto=format&fit=crop"
+      ],
+      "description": "Star-like gold and silver flecks shine against a deep black background. This granite is incredibly dense and resistant to scratches, making it perfect for modern homes.",
+      "specs": [
+        "Origin: Andhra Pradesh",
+        "Finish: High Gloss",
+        "Thickness: 18mm",
+        "Usage: Countertops/Flooring"
+      ],
+      "price": 220,
+      "stock": 300,
+      "rating": 4.7
+    },
+    {
+      "id": 5,
+      "name": "Teakwood Sandstone",
+      "type": "Sandstone",
+      "images": [
+        "https://images.unsplash.com/photo-1604147495798-57beb5d6af73?q=80&w=1000&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1597211661940-ddf36269df71?q=80&w=1000&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?q=80&w=1000&auto=format&fit=crop"
+      ],
+      "description": "Resembling the texture of wood, this sandstone brings an organic, rustic charm. It features beautiful banding in shades of yellow and brown.",
+      "specs": [
+        "Origin: India",
+        "Finish: Sawn",
+        "Thickness: 22mm",
+        "Usage: Wall Cladding/Flooring"
+      ],
+      "price": 110,
+      "stock": 850,
+      "rating": 4.6
+    },
+    {
+      "id": 6,
+      "name": "Travertine Silver",
+      "type": "Travertine",
+      "images": [
+        "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=1000&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1595428774223-ef52624120d2?q=80&w=1000&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1594568284297-7c64464062b1?q=80&w=1000&auto=format&fit=crop"
+      ],
+      "description": "A sophisticated silver-grey travertine with linear veining. Its porous nature gives it a unique texture, often filled for a smoother finish or left unfilled for a rustic look.",
+      "specs": [
+        "Origin: Turkey",
+        "Finish: Tumbled",
+        "Thickness: 15mm",
+        "Usage: Bathroom/Patio"
+      ],
+      "price": 320,
+      "stock": 150,
+      "rating": 4.8
+    },
+    {
+      "id": 7,
+      "name": "Mint White Sandstone",
+      "type": "Sandstone",
+      "images": [
+        "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=1000&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1595428774223-ef52624120d2?q=80&w=1000&auto=format&fit=crop"
+      ],
+      "description": "A creamy white sandstone with minty green undertones. Perfect for pool decks and outdoor paving due to its non-slip properties.",
+      "specs": [
+        "Origin: Gwalior",
+        "Finish: Natural Split",
+        "Thickness: 22mm",
+        "Usage: Outdoor/Pool"
+      ],
+      "price": 95,
+      "stock": 600,
+      "rating": 4.4
+    },
+    {
+      "id": 8,
+      "name": "Steel Grey Granite",
+      "type": "Granite",
+      "images": [
+        "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1000&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1622372738946-a287d1434173?q=80&w=1000&auto=format&fit=crop"
+      ],
+      "description": "A consistent grey granite with small lighter grey flecks. A versatile choice for both commercial and residential projects.",
+      "specs": [
+        "Origin: India",
+        "Finish: Polished/Leather",
+        "Thickness: 18mm",
+        "Usage: Countertops/Flooring"
+      ],
+      "price": 160,
+      "stock": 800,
+      "rating": 4.6
+    },
+    {
+      "id": 9,
+      "name": "Rainforest Green Marble",
+      "type": "Marble",
+      "images": [
+        "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=1000&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=1000&auto=format&fit=crop"
+      ],
+      "description": "An exotic marble with a web of dark brown veins over a green background, resembling a forest map. A true statement piece.",
+      "specs": [
+        "Origin: Rajasthan",
+        "Finish: Polished",
+        "Thickness: 18mm",
+        "Usage: Wall Cladding/Tabletops"
+      ],
+      "price": 280,
+      "stock": 150,
+      "rating": 4.9
+    },
+    {
+      "id": 10,
+      "name": "Jaisalmer Yellow",
+      "type": "Limestone",
+      "images": [
+        "https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=1000&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop"
+      ],
+      "description": "Also known as Yellow Gold, this limestone brings the warmth of the desert sun to your floors. Very popular in heritage hotels.",
+      "specs": [
+        "Origin: Jaisalmer",
+        "Finish: Honed/Polished",
+        "Thickness: 20mm",
+        "Usage: Flooring/Cladding"
+      ],
+      "price": 140,
+      "stock": 300,
+      "rating": 4.7
+    }
+  ]
+}
