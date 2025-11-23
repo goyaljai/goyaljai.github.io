@@ -68,6 +68,7 @@ function initializeApp() {
     const modalAreaInput = document.getElementById('modalAreaInput');
     const modalTotalPrice = document.getElementById('modalTotalPrice');
     const btnBuyNow = document.getElementById('btnBuyNow');
+    const btnAddToCart = document.getElementById('btnAddToCart');
     const btnWhatsApp = document.getElementById('btnWhatsApp');
 
     // Bidding Elements
@@ -328,25 +329,29 @@ function initializeApp() {
     }
 
     // Search Input Handler
-    searchInput.addEventListener('input', (e) => {
-        activeFilters.search = e.target.value.toLowerCase();
-        applyFilters();
-    });
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            activeFilters.search = e.target.value.toLowerCase();
+            applyFilters();
+        });
+    }
 
     // Clear Filters
-    clearFiltersBtn.addEventListener('click', () => {
-        activeFilters = {
-            search: '',
-            type: [],
-            price: [],
-            stock: []
-        };
-        searchInput.value = '';
-        document.querySelectorAll('.filter-option input[type="checkbox"]').forEach(cb => {
-            cb.checked = false;
+    if (clearFiltersBtn) {
+        clearFiltersBtn.addEventListener('click', () => {
+            activeFilters = {
+                search: '',
+                type: [],
+                price: [],
+                stock: []
+            };
+            searchInput.value = '';
+            document.querySelectorAll('.filter-option input[type="checkbox"]').forEach(cb => {
+                cb.checked = false;
+            });
+            applyFilters();
         });
-        applyFilters();
-    });
+    }
 
     // Apply Filters
     function applyFilters() {
@@ -514,37 +519,40 @@ function initializeApp() {
         modalTotalPrice.textContent = `₹${total.toLocaleString('en-IN')}`;
     }
 
-    // Bidding Logic
-    btnSubmitBid.addEventListener('click', () => {
-        const bidAmount = parseInt(bidInput.value);
-        if (!bidAmount || bidAmount <= 0) {
-            alert("Please enter a valid bid amount.");
-            return;
-        }
-
-        const message = `Hi Aangan, I want to place a bid of ₹${bidAmount}/sq.ft for ${currentProduct.name}. (Original Price: ₹${currentProduct.price}/sq.ft)`;
-        window.open(`https://wa.me/919829039506?text=${encodeURIComponent(message)}`, '_blank');
-    });
+    // Submit Bid
+    if (btnSubmitBid) {
+        btnSubmitBid.addEventListener('click', () => {
+            const price = parseInt(bidInput.value) || 0;
+            if (price <= 0) {
+                alert("Please enter a valid price.");
+                return;
+            }
+            alert("Thank you! We have received your bid of ₹" + price + "/sq.ft. We will contact you shortly.");
+            bidInput.value = '';
+        });
+    }
 
     // Add to Cart
-    btnBuyNow.addEventListener('click', () => {
-        const area = parseInt(modalAreaInput.value) || 0;
-        if (area <= 0) {
-            alert("Please enter a valid area.");
-            return;
-        }
+    if (btnBuyNow) {
+        btnBuyNow.addEventListener('click', () => {
+            const area = parseInt(modalAreaInput.value) || 0;
+            if (area <= 0) {
+                alert("Please enter a valid area.");
+                return;
+            }
 
-        const item = {
-            ...currentProduct,
-            area: area,
-            totalPrice: area * currentProduct.price
-        };
+            const item = {
+                ...currentProduct,
+                area: area,
+                totalPrice: area * currentProduct.price
+            };
 
-        cart.push(item);
-        updateCartCount();
-        closeModal();
-        openCheckout();
-    });
+            cart.push(item);
+            updateCartCount();
+            closeModal();
+            openCheckout();
+        });
+    }
 
     function updateCartCount() {
         cartCount.textContent = cart.length;
