@@ -82,16 +82,38 @@
                     <button id="clearFilters" class="btn-clear-filters">Clear All Filters</button>
                 </aside>
 
-                <!-- Right Side: Product Grid -->
+                <!-- Right Side: Product Grid --\u003e
                 <div class="products-main">
-                    <div class="products-header">
-                        <p id="resultsCount" class="results-count">Showing all products</p>
-                    </div>
-                    <div class="product-grid" id="productGrid">
-                        <!-- Products will be injected here by JS -->
-                    </div>
+                    <!-- Mobile Filter Pills (Amazon Style) -->
+                <div class="mobile-filter-pills" id="mobileFilterPills">
+                    <!-- Pills will be injected by JS -->
+                </div>
+
+                <div class="products-header">
+                    <p id="resultsCount" class="results-count">Showing all products</p>
+                </div>
+                <div class="product-grid" id="productGrid">
+                    <!-- Products will be injected here by JS -->
                 </div>
             </div>
+        </div>
+
+        <!-- Mobile Filter Modal (Bottom Sheet) -->
+        <div id="filterModal" class="filter-modal">
+            <div class="filter-modal-content">
+                <div class="filter-modal-header">
+                    <h3 class="filter-modal-title" id="filterModalTitle">Filters</h3>
+                    <button class="filter-modal-close" id="closeFilterModal">&times;</button>
+                </div>
+                <div class="filter-modal-body" id="filterModalBody">
+                    <!-- Filter options will be injected here -->
+                </div>
+                <div class="filter-modal-footer">
+                    <button class="btn-clear-modal" id="clearModalFilters">Clear all</button>
+                    <button class="btn-apply-modal" id="applyModalFilters">Show results</button>
+                </div>
+            </div>
+        </div>
         </div>
     </section>
 

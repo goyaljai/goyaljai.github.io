@@ -48,6 +48,15 @@ function initializeApp() {
     const clearFiltersBtn = document.getElementById('clearFilters');
     const resultsCount = document.getElementById('resultsCount');
 
+    // Mobile filter elements
+    const mobileFilterPills = document.getElementById('mobileFilterPills');
+    const filterModal = document.getElementById('filterModal');
+    const filterModalBody = document.getElementById('filterModalBody');
+    const filterModalTitle = document.getElementById('filterModalTitle');
+    const closeFilterModal = document.getElementById('closeFilterModal');
+    const clearModalFilters = document.getElementById('clearModalFilters');
+    const applyModalFilters = document.getElementById('applyModalFilters');
+
     // Modal Elements
     const modalGallery = document.getElementById('modalGallery');
     const modalTitle = document.getElementById('modalTitle');
@@ -70,19 +79,210 @@ function initializeApp() {
     const nextBtn = document.getElementById('nextBtn');
 
     let currentProduct = null;
+    let currentFilterCategory = null; // For mobile modal
+
+    // Render Mobile Filter Pills (Amazon Style)
+    function renderMobileFilterPills() {
+        if (!mobileFilterPills) return;
+
+        mobileFilterPills.innerHTML = '';
+
+        // Add "All Filters" pill
+        const allFiltersPill = document.createElement('button');
+        allFiltersPill.className = 'filter-pill';
+        allFiltersPill.innerHTML = `
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+            </svg>
+            All Filters
+        `;
+        allFiltersPill.addEventListener('click', () => openFilterModal('all'));
+        mobileFilterPills.appendChild(allFiltersPill);
+
+        // Add pill for each filter category
+        filters.forEach(filter => {
+            const pill = document.createElement('button');
+            pill.className = 'filter-pill';
+            pill.textContent = filter.name;
+            pill.dataset.filterId = filter.id;
+
+            // Check if this filter has active selections
+            if (activeFilters[filter.id] && activeFilters[filter.id].length > 0) {
+                pill.classList.add('active');
+            }
+
+            pill.addEventListener('click', () => openFilterModal(filter.id));
+            mobileFilterPills.appendChild(pill);
+        });
+    }
+
+    // Open Filter Modal
+    function openFilterModal(filterId) {
+        currentFilterCategory = filterId;
+
+        if (filterId === 'all') {
+            filterModalTitle.textContent = 'All Filters';
+            renderAllFiltersInModal();
+        } else {
+            const filter = filters.find(f => f.id === filterId);
+            filterModalTitle.textContent = filter.name;
+            renderSingleFilterInModal(filter);
+        }
+
+        filterModal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Render all filters in modal
+    function renderAllFiltersInModal() {
+        filterModalBody.innerHTML = '';
+        filters.forEach(filter => {
+            const filterGroup = createFilterGroup(filter);
+            filterModalBody.appendChild(filterGroup);
+        });
+    }
+
+    // Render single filter in modal
+    function renderSingleFilterInModal(filter) {
+        filterModalBody.innerHTML = '';
+        const filterGroup = createFilterGroup(filter, false);
+        filterModalBody.appendChild(filterGroup);
+    }
+
+    // Create filter group HTML
+    function createFilterGroup(filter, showTitle = true) {
+        const group = document.createElement('div');
+        group.className = 'filter-group';
+
+        if (showTitle) {
+            const title = document.createElement('h4');
+            title.className = 'filter-group-title';
+            title.textContent = filter.name;
+            title.style.cursor = 'default';
+            title.style.marginBottom = '1rem';
+            group.appendChild(title);
+        }
+
+        const optionsContainer = document.createElement('div');
+        optionsContainer.className = 'filter-options';
+        optionsContainer.style.maxHeight = 'none';
+
+        filter.options.forEach(option => {
+            const filterOption = document.createElement('div');
+            filterOption.className = 'filter-option';
+
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.id = `modal-filter-${filter.id}-${option.value}`;
+            checkbox.value = option.value;
+            checkbox.dataset.filterId = filter.id;
+            checkbox.checked = activeFilters[filter.id] && activeFilters[filter.id].includes(option.value);
+
+            const label = document.createElement('label');
+            label.htmlFor = checkbox.id;
+            label.textContent = option.label;
+
+            filterOption.appendChild(checkbox);
+            filterOption.appendChild(label);
+            optionsContainer.appendChild(filterOption);
+
+            checkbox.addEventListener('change', handleModalFilterChange);
+        });
+
+        group.appendChild(optionsContainer);
+        return group;
+    }
+
+    // Handle modal filter change (don't apply immediately)
+    function handleModalFilterChange(e) {
+        const filterId = e.target.dataset.filterId;
+        const value = e.target.value;
+
+        if (e.target.checked) {
+            if (!activeFilters[filterId].includes(value)) {
+                activeFilters[filterId].push(value);
+            }
+        } else {
+            activeFilters[filterId] = activeFilters[filterId].filter(v => v !== value);
+        }
+    }
+
+    // Close filter modal
+    function closeFilterModalFn() {
+        filterModal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Apply modal filters
+    function applyModalFiltersFn() {
+        applyFilters();
+        renderMobileFilterPills(); // Update pill active states
+        closeFilterModalFn();
+    }
+
+    // Clear modal filters
+    function clearModalFiltersFn() {
+        activeFilters = {
+            search: '',
+            type: [],
+            price: [],
+            stock: []
+        };
+        if (searchInput) searchInput.value = '';
+
+        // Update checkboxes in modal
+        filterModalBody.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+            cb.checked = false;
+        });
+
+        applyFilters();
+        renderMobileFilterPills();
+    }
+
+    // Event listeners for modal
+    if (closeFilterModal) {
+        closeFilterModal.addEventListener('click', closeFilterModalFn);
+    }
+    if (applyModalFilters) {
+        applyModalFilters.addEventListener('click', applyModalFiltersFn);
+    }
+    if (clearModalFilters) {
+        clearModalFilters.addEventListener('click', clearModalFiltersFn);
+    }
+    if (filterModal) {
+        filterModal.addEventListener('click', (e) => {
+            if (e.target === filterModal) closeFilterModalFn();
+        });
+    }
+
 
     // Render Filter Sidebar
     function renderFilters() {
         filterSidebar.innerHTML = '';
 
-        filters.forEach(filter => {
+        filters.forEach((filter, index) => {
             const filterGroup = document.createElement('div');
             filterGroup.className = 'filter-group';
+
+            // On mobile, start with first group open, rest collapsed
+            if (window.innerWidth <= 768 && index > 0) {
+                filterGroup.classList.add('collapsed');
+            }
 
             const title = document.createElement('h4');
             title.className = 'filter-group-title';
             title.textContent = filter.name;
+
+            // Add click handler for collapsible behavior
+            title.addEventListener('click', () => {
+                filterGroup.classList.toggle('collapsed');
+            });
+
             filterGroup.appendChild(title);
+
+            // Create options container for smooth collapse
+            const optionsContainer = document.createElement('div');
+            optionsContainer.className = 'filter-options';
 
             filter.options.forEach(option => {
                 const filterOption = document.createElement('div');
@@ -100,12 +300,13 @@ function initializeApp() {
 
                 filterOption.appendChild(checkbox);
                 filterOption.appendChild(label);
-                filterGroup.appendChild(filterOption);
+                optionsContainer.appendChild(filterOption);
 
                 // Add event listener
                 checkbox.addEventListener('change', handleFilterChange);
             });
 
+            filterGroup.appendChild(optionsContainer);
             filterSidebar.appendChild(filterGroup);
         });
     }
@@ -250,6 +451,7 @@ function initializeApp() {
     // Initial Render
     console.log('Rendering filters and products...');
     renderFilters();
+    renderMobileFilterPills();
     renderProducts();
     updateResultsCount(products.length);
 
