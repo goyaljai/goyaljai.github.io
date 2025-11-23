@@ -67,7 +67,7 @@ function initializeApp() {
     const modalStock = document.getElementById('modalStock');
     const modalAreaInput = document.getElementById('modalAreaInput');
     const modalTotalPrice = document.getElementById('modalTotalPrice');
-    const btnAddToCart = document.getElementById('btnAddToCart');
+    const btnBuyNow = document.getElementById('btnBuyNow');
     const btnWhatsApp = document.getElementById('btnWhatsApp');
 
     // Bidding Elements
@@ -527,7 +527,7 @@ function initializeApp() {
     });
 
     // Add to Cart
-    btnAddToCart.addEventListener('click', () => {
+    btnBuyNow.addEventListener('click', () => {
         const area = parseInt(modalAreaInput.value) || 0;
         if (area <= 0) {
             alert("Please enter a valid area.");
@@ -543,7 +543,7 @@ function initializeApp() {
         cart.push(item);
         updateCartCount();
         closeModal();
-        alert(`${currentProduct.name} added to cart!`);
+        openCheckout();
     });
 
     function updateCartCount() {

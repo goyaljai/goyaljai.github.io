@@ -370,7 +370,7 @@ img {
 /* Responsive Sidebar */
 @media (max-width: 1024px) {
     .collection-layout {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
     }
 
     .filter-sidebar {
@@ -396,6 +396,7 @@ img {
         margin-bottom: 1rem;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
+        max-width: 100%;
     }
 
     .mobile-filter-pills::-webkit-scrollbar {
@@ -941,12 +942,22 @@ img {
         grid-template-columns: 1fr;
     }
 
+    .modal-content {
+        width: 95%;
+        margin: 0 auto;
+        max-height: 85vh;
+    }
+
     .modal-image-container {
-        height: 300px;
+        height: 250px;
     }
 
     .modal-details {
-        padding: 2rem;
+        padding: 1.25rem;
+    }
+
+    #modalTitle {
+        font-size: 1.75rem;
     }
 
     .footer-content {
@@ -1087,143 +1098,32 @@ img {
     }
 
     .btn-whatsapp {
-        background-color: var(--color-success);
+        background-color: #25D366;
         color: white;
+        border: 1px solid #25D366;
         padding: 1rem 2rem;
         font-weight: 500;
-        text-transform: uppercase;
-        font-size: 0.875rem;
-        border-radius: 0;
-        /* Sharp edges for premium feel */
+        border-radius: 4px;
         transition: var(--transition-smooth);
     }
 
     .btn-whatsapp:hover {
-        background-color: #1ebc57;
-        color: white;
+        background-color: #128C7E;
+        border-color: #128C7E;
     }
 
-    /* Checkout Modal */
-    .checkout-content {
-        max-width: 800px;
-        padding: 0;
-        overflow: hidden;
-    }
-
-    .checkout-header {
-        background-color: var(--color-primary);
-        color: white;
-        padding: 1.5rem 2rem;
-    }
-
-    .checkout-header h2 {
-        font-size: 1.5rem;
-        margin: 0;
-    }
-
-    .checkout-body {
-        display: grid;
-        grid-template-columns: 1fr 1.2fr;
-        height: 600px;
-    }
-
-    .order-summary {
-        background-color: #F5F5F4;
-        padding: 2rem;
-        border-right: 1px solid #E7E5E4;
-        overflow-y: auto;
-    }
-
-    .cart-items-list {
+    /* Bid Box Styling */
+    .bid-box {
         margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #E7E5E4;
     }
 
-    .cart-item {
-        display: flex;
-        justify-content: space-between;
-        padding: 1rem 0;
-        border-bottom: 1px solid #E7E5E4;
-    }
-
-    .cart-item h4 {
-        font-size: 1rem;
-        margin-bottom: 0.25rem;
-    }
-
-    .cart-item p {
-        font-size: 0.85rem;
-        color: var(--color-text-muted);
-    }
-
-    .cart-total-row {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 2rem;
-        padding-top: 1rem;
-        border-top: 2px solid #E7E5E4;
-        font-size: 1.25rem;
-    }
-
-    .payment-form-container {
-        padding: 2rem;
-        overflow-y: auto;
-    }
-
-    .form-group {
-        margin-bottom: 1.5rem;
-    }
-
-    .form-group label {
+    .bid-box label {
         display: block;
         margin-bottom: 0.5rem;
         font-weight: 500;
         font-size: 0.9rem;
-        color: var(--color-text-muted);
-    }
-
-    .form-group input,
-    .form-select {
-        width: 100%;
-        padding: 0.75rem;
-        border: 1px solid #E7E5E4;
-        border-radius: 4px;
-        font-family: var(--font-body);
-        font-size: 1rem;
-        transition: border-color 0.2s;
-    }
-
-    .form-group input:focus,
-    .form-select:focus {
-        outline: none;
-        border-color: var(--color-primary);
-    }
-
-    /* Responsive Adjustments */
-    @media (max-width: 768px) {
-        .checkout-body {
-            grid-template-columns: 1fr;
-            height: auto;
-            max-height: 80vh;
-        }
-
-        .modal-actions {
-            flex-direction: column;
-        }
-
-        .order-summary {
-            display: none;
-            /* Hide summary on mobile for simplicity in this demo */
-        }
-    }
-
-    /* Bidding Styles */
-    .bid-box {
-        background-color: #F0FDF4;
-        /* Light green bg */
-        border: 1px solid #BBF7D0;
-        padding: 1.5rem;
-        border-radius: 8px;
-        margin: 1.5rem 0;
     }
 
     .bid-input-group {
@@ -1235,56 +1135,311 @@ img {
     .bid-input-group input {
         flex: 1;
         padding: 0.75rem;
-        border: 1px solid #BBF7D0;
+        border: 1px solid #E7E5E4;
         border-radius: 4px;
         font-family: var(--font-body);
+        font-size: 1rem;
     }
 
     .btn-outline {
         padding: 0.75rem 1.5rem;
-        background-color: var(--color-primary);
-        /* Solid color for better visibility */
-        color: white;
+        background: transparent;
         border: 1px solid var(--color-primary);
+        color: var(--color-primary);
+        font-weight: 500;
+        border-radius: 4px;
         cursor: pointer;
-        font-weight: 600;
-        text-transform: uppercase;
-        font-size: 0.85rem;
-        letter-spacing: 0.05em;
         transition: var(--transition-smooth);
         white-space: nowrap;
     }
 
     .btn-outline:hover {
-        background-color: #292524;
-        /* Darker shade */
+        background: var(--color-primary);
+        color: white;
+    }
+
+    /* Modern Checkout Modal */
+    .checkout-content {
+        max-width: 900px;
+        width: 95%;
+        padding: 0;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        background: #FFFFFF;
+    }
+
+    .checkout-header {
+        background: #FFFFFF;
+        padding: 1.5rem 2.5rem;
+        border-bottom: 1px solid #F3F4F6;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .checkout-header h2 {
+        font-size: 1.5rem;
+        margin: 0;
+        color: #111827;
+        font-weight: 700;
+        letter-spacing: -0.025em;
+    }
+
+    .checkout-body {
+        padding: 0;
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        background: #F9FAFB;
+    }
+
+    /* Order Summary (Left Side) */
+    .order-summary {
+        background: #F3F4F6;
+        padding: 2.5rem;
+        border-right: 1px solid #E5E7EB;
+    }
+
+    .order-summary h3 {
+        font-size: 1.125rem;
+        margin-bottom: 1.5rem;
+        color: #374151;
+        font-weight: 600;
+    }
+
+    .cart-items-list {
+        margin-bottom: 2rem;
+    }
+
+    .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+        border-bottom: 1px solid #E5E7EB;
+    }
+
+    .cart-item:last-child {
+        border-bottom: none;
+    }
+
+    .cart-item-info h4 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #111827;
+        margin-bottom: 0.25rem;
+    }
+
+    .cart-item-info p {
+        font-size: 0.875rem;
+        color: #6B7280;
+    }
+
+    .cart-item-price {
+        font-weight: 600;
+        color: #111827;
+    }
+
+    .cart-total-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 1.5rem;
+        border-top: 1px solid #D1D5DB;
+        margin-top: auto;
+    }
+
+    .cart-total-row span {
+        font-size: 1rem;
+        color: #4B5563;
+    }
+
+    .cart-total-row strong {
+        font-size: 1.5rem;
+        color: #111827;
+        font-weight: 700;
+    }
+
+    /* Payment Form (Right Side) */
+    .payment-form-container {
+        padding: 2.5rem;
+        background: #FFFFFF;
+    }
+
+    .payment-form-container h3 {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+        color: #111827;
+        font-weight: 600;
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        font-size: 0.875rem;
+        color: #374151;
+    }
+
+    .form-group input,
+    .form-group select {
+        width: 100%;
+        padding: 0.875rem 1rem;
+        background: #F9FAFB;
+        border: 1px solid #E5E7EB;
+        border-radius: 8px;
+        font-family: var(--font-body);
+        font-size: 1rem;
+        color: #111827;
+        transition: all 0.2s ease;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+        outline: none;
+        background: #FFFFFF;
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 4px rgba(68, 64, 60, 0.1);
+    }
+
+    .form-group input::placeholder {
+        color: #9CA3AF;
+    }
+
+    .btn-place-order {
+        width: 100%;
+        padding: 1rem;
+        background: var(--color-primary);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0.025em;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        margin-top: 1rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .btn-place-order:hover {
+        background: #292524;
         transform: translateY(-1px);
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     }
 
-    .text-muted {
-        font-size: 0.8rem;
-        color: var(--color-text-muted);
+    /* Modern Bid Box */
+    .bid-box {
+        background: #FFFFFF;
+        border: 1px solid #E5E7EB;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin: 2rem 0;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     }
 
-    /* Responsive Adjustments */
+    .bid-box label {
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 0.75rem;
+        display: block;
+    }
+
+    .bid-input-group {
+        display: flex;
+        gap: 0.75rem;
+    }
+
+    .bid-input-group input {
+        flex: 1;
+        padding: 0.75rem 1rem;
+        border: 1px solid #D1D5DB;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: all 0.2s;
+    }
+
+    .bid-input-group input:focus {
+        outline: none;
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 3px rgba(68, 64, 60, 0.1);
+    }
+
+    .btn-outline {
+        padding: 0.75rem 1.5rem;
+        background: white;
+        border: 1px solid #D1D5DB;
+        color: #374151;
+        font-weight: 600;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .btn-outline:hover {
+        border-color: var(--color-primary);
+        color: var(--color-primary);
+        background: #FAFAF9;
+    }
+
+    /* Modal Image Fix & Desktop Layout */
+    @media (min-width: 769px) {
+        .modal-body {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 0;
+        }
+
+        .modal-image-container {
+            height: 100%;
+            min-height: 600px;
+            background: #F3F4F6;
+        }
+
+        .modal-details {
+            padding: 3rem;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+    }
+
+    /* Mobile Responsive */
     @media (max-width: 768px) {
         .checkout-body {
             grid-template-columns: 1fr;
-            height: auto;
-            max-height: 80vh;
-        }
-
-        .modal-actions {
-            flex-direction: column;
         }
 
         .order-summary {
             display: none;
-            /* Hide summary on mobile for simplicity in this demo */
+            /* Keep hidden on mobile for now as per previous logic */
         }
 
-        .modal-image-container {
-            height: 350px;
+        .payment-form-container {
+            padding: 1.5rem;
+        }
+
+        .form-row {
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
+
+        .checkout-header {
+            padding: 1.25rem 1.5rem;
         }
     }
