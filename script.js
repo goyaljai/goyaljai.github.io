@@ -532,7 +532,29 @@ function initializeApp() {
         });
     }
 
-    // Add to Cart
+    // Add to Cart (Only adds to cart)
+    if (btnAddToCart) {
+        btnAddToCart.addEventListener('click', () => {
+            const area = parseInt(modalAreaInput.value) || 0;
+            if (area <= 0) {
+                alert("Please enter a valid area.");
+                return;
+            }
+
+            const item = {
+                ...currentProduct,
+                area: area,
+                totalPrice: area * currentProduct.price
+            };
+
+            cart.push(item);
+            updateCartCount();
+            closeModal();
+            alert("Added to cart!");
+        });
+    }
+
+    // Checkout Now (Adds to cart AND opens checkout)
     if (btnBuyNow) {
         btnBuyNow.addEventListener('click', () => {
             const area = parseInt(modalAreaInput.value) || 0;
@@ -585,9 +607,22 @@ function initializeApp() {
                     <h4>${item.name}</h4>
                     <p>${item.area} sq.ft x ₹${item.price}</p>
                 </div>
-                <div class="cart-item-price">₹${item.totalPrice.toLocaleString('en-IN')}</div>
+                <div class="cart-item-right" style="display: flex; align-items: center; gap: 1rem;">
+                    <div class="cart-item-price">₹${item.totalPrice.toLocaleString('en-IN')}</div>
+                    <button class="btn-remove-item" data-index="${index}" style="background: none; border: none; color: #EF4444; font-size: 1.5rem; cursor: pointer; padding: 0 0.5rem;">&times;</button>
+                </div>
             `;
             cartItemsContainer.appendChild(div);
+        });
+
+        // Add event listeners for remove buttons
+        document.querySelectorAll('.btn-remove-item').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const index = parseInt(e.target.dataset.index);
+                cart.splice(index, 1);
+                updateCartCount();
+                openCheckout(); // Re-render
+            });
         });
 
         cartTotalElement.textContent = `₹${grandTotal.toLocaleString('en-IN')}`;
@@ -639,6 +674,18 @@ function initializeApp() {
         if (e.target === modal) closeModal();
         if (e.target === checkoutModal) closeCheckout();
     });
+
+    // Hero Video Loop Logic (6s to 26s)
+    const heroVideo = document.getElementById('heroVideo');
+    if (heroVideo) {
+        heroVideo.currentTime = 6;
+        heroVideo.addEventListener('timeupdate', function () {
+            if (this.currentTime >= 26) {
+                this.currentTime = 6;
+                this.play();
+            }
+        });
+    }
 
     // Gallery Navigation Logic
     prevBtn.addEventListener('click', () => {

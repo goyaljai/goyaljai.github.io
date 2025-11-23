@@ -131,17 +131,39 @@ img {
 
 /* Hero Section */
 .hero {
-    height: 90vh;
-    position: relative;
+    height: 100vh;
+    min-height: 600px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    /* Placeholder background - using a subtle texture or color if image fails */
-    background-image: url('https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2700&auto=format&fit=crop');
-    background-size: cover;
-    background-position: center;
-    color: var(--color-white);
+    color: white;
+    position: relative;
+    overflow: hidden;
+    /* Remove background-image as we have video now */
+    background-color: #000;
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.video-background video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 100vh;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    /* This works for video tag! */
+    pointer-events: none;
 }
 
 .hero-overlay {
@@ -150,13 +172,16 @@ img {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.4);
+    /* Darker overlay for better text readability over video */
+    z-index: 1;
 }
 
 .hero-content {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     max-width: 800px;
+    padding: 0 1rem;
 }
 
 .hero-title {
