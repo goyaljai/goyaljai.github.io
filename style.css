@@ -886,7 +886,7 @@ img {
     padding: 3rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; Removed to prevent clipping on overflow */
 }
 
 #modalTitle {

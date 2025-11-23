@@ -502,12 +502,19 @@ function initializeApp() {
 
         modal.style.display = 'flex';
 
-        // Reset scroll position after making it visible
-        const modalContent = modal.querySelector('.modal-content');
-        if (modalContent) modalContent.scrollTop = 0;
-
-        const modalDetails = modal.querySelector('.modal-details');
-        if (modalDetails) modalDetails.scrollTop = 0;
+        // Force reset scroll position using scrollIntoView
+        // This is more robust as it handles nested scroll containers automatically
+        requestAnimationFrame(() => {
+            if (modalTitle) {
+                modalTitle.scrollIntoView({ block: 'start', behavior: 'auto' });
+            }
+            // Fallback: reset containers directly
+            const containers = [
+                modal.querySelector('.modal-content'),
+                modal.querySelector('.modal-details')
+            ];
+            containers.forEach(c => { if (c) c.scrollTop = 0; });
+        });
 
         setTimeout(() => modal.classList.add('show'), 10);
         document.body.style.overflow = 'hidden';
